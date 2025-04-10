@@ -13,16 +13,22 @@ def ingresar():
         user = login_service.validar_usuario(usuario, contraseña)
         
         if user:
-            session['id_usuario'] = user.id_usuario
-            flash('Inicio de sesión exitoso', 'success')
+            
+            session['usuario'] = {
+                'id_usuario': user.id_usuario,
+                'usuario': user.usuario,
+                'id_rol': user.id_rol
+            }
             return redirect(url_for('dashboard.ver_pant_principal'))
         else:
             flash('Usuario o contraseña incorrectos', 'danger')
     
     return render_template('login.html')
 
-# @login_bp.route('/logout')
-# def logout():
-#     session.pop('usuario', None)
-#     flash('Sesión cerrada correctamente', 'info')
-#     return redirect(url_for('login.ingresar'))
+
+
+@login_bp.route('/cerrar', methods=['GET'])
+def cerrar():
+    session.pop('usuario', None)
+    return redirect(url_for('login_bp.ingresar'))
+
