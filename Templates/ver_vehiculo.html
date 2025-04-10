@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block body %}
+<h1>Detalles del Vehículo</h1>
+
+<form method="POST" action="{{ url_for('vehiculos_bp.ver_vehiculo', id_vehiculo=vehiculo.id_vehiculo) }}">
+    <div class="form-group">
+        <label for="placa">Placa</label>
+        <input type="text" class="form-control" id="placa" name="placa" value="{{ vehiculo.placa }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="modelo">Modelo</label>
+        <input type="text" class="form-control" id="modelo" name="modelo" value="{{ vehiculo.modelo }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="marca">Marca</label>
+        <input type="text" class="form-control" id="marca" name="marca" value="{{ vehiculo.marca }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="kilometraje_actual">Kilometraje Actual</label>
+        <input type="number" class="form-control" id="kilometraje_actual" name="kilometraje_actual"
+               value="{{ vehiculo.kilometraje_actual }}" step="0.01">
+    </div>
+
+    <input type="hidden" name="accion" value="actualizar">
+    <button type="submit" class="btn btn-primary mt-2">Actualizar</button>
+</form>
+
+<form method="POST" action="{{ url_for('vehiculos_bp.eliminar_vehiculo', id_vehiculo=vehiculo.id_vehiculo) }}"
+      onsubmit="return confirm('¿Estás seguro de eliminar este vehículo?');" class="mt-2">
+    <input type="hidden" name="accion" value="eliminar">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
+
+
+{% endblock %}
