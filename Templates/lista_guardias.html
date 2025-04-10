@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% block body %}
+
+{% if guardias %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guardia in guardias %}
+                <tr>
+                    <td>{{ guardia.id_guardia }}</td>
+                    <td>{{ guardia.nombre }}</td>
+                    <td>
+                        <!-- Botones para ver, editar o eliminar -->
+                        <a href="{{ url_for('guardia_bp.ver_guardia', id_guardia=guardia.id_guardia) }}" class="btn btn-info btn-sm">Ver</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h1>No hay guardias</h1>
+{% endif %}
+
+
+{% endblock %}

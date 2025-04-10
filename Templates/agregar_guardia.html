@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block body %}
+<form method="POST" action="{{ url_for('guardia_bp.agregar_guardia') }}">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Guardía</button>
+</form>
+
+
+
+{% endblock %}

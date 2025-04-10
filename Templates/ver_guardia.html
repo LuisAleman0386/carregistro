@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block body %}
+
+<form method="POST" action="{{ url_for('guardia_bp.ver_guardia', id_guardia=guardia.id_guardia) }}">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ guardia.nombre }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+
+<!-- Botón para eliminar el guardia -->
+<form method="POST" action="{{ url_for('guardia_bp.eliminar_guardia', id_guardia=guardia.id_guardia) }}"
+      onsubmit="return confirm('¿Estás seguro de eliminar este guardia?');">
+    <button type="submit" class="btn btn-danger">Eliminar Guardia</button>
+</form>
+
+
+{% endblock %}

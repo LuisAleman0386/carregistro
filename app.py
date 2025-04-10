@@ -38,12 +38,15 @@ from Controllers.LoginController import login_bp
 from Controllers.DashboardController import dashboard
 from Controllers.ControlController import control
 from Controllers.pilotoController import pilotos_bp
+from Controllers.guardiaController import guardia_bp
 
 # Registrar Blueprints
 app.register_blueprint(login_bp)
 app.register_blueprint(dashboard)
 app.register_blueprint(control)
 app.register_blueprint(pilotos_bp)
+app.register_blueprint(guardia_bp)
+
 
 
 
