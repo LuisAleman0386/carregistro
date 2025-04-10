@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block body %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-primary text-white text-center rounded-top-4">
+            <h4 class="mb-0">Agregar Piloto</h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST" action="{{ url_for('pilotos_bp.agregar_piloto') }}">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre del Piloto</label>
+                    <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-4">
+                    <label for="licencia" class="form-label">Número de Licencia</label>
+                    <input type="text" class="form-control form-control-lg" id="licencia" name="licencia" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

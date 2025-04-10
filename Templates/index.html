@@ -18,16 +18,22 @@
     <li class="nav-item">
       <a class="nav-link" href="{{url_for('control.ver_pant_principal')}}">CONTROL VEHICULAR</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">MANTENIMIENTO</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">ADMINISTRACION</a>
+    <!-- Menú desplegable para Administración -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        pilotos
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+        <li><a class="dropdown-item" href="{{url_for('pilotos_bp.lista_pilotos')}}">Lista pilotos</a></li>
+        <li><a class="dropdown-item" href="{{url_for('pilotos_bp.agregar_piloto')}}">Agregar piloto</a></li>
+      </ul>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{url_for('login_bp.cerrar')}}">Cerrar sesión</a>
     </li>
   </ul>
+
   {% endif %}
 
   <div class="container mt-4">

@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block body %}
+
+<!-- Verificamos si hay pilotos -->
+{% if pilotos %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Licencia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for piloto in pilotos %}
+            <tr>
+                <td>{{ piloto.id_piloto }}</td>
+                <td>{{ piloto.nombre }}</td>
+                <td>{{ piloto.licencia }}</td>
+                <td>
+                    <!-- Aquí puedes agregar enlaces a detalles o editar piloto -->
+                    <a href="{{ url_for('pilotos_bp.ver_piloto', id_piloto=piloto.id_piloto) }}" class="btn btn-info btn-sm">Ver</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay pilotos registrados.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,10 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy import  ForeignKey, Integer ,String, DateTime, Boolean
+from sqlalchemy import  ForeignKey, Integer ,String, DateTime, Boolean, Numeric
+from db import db
 import bcrypt
 
 
-db = SQLAlchemy()
 
 ### Tabla de Roles
 class roles(db.Model):
@@ -38,4 +38,37 @@ class usuarios(db.Model):
     def verificar_contraseña(self, contraseña):
         # Verificar si la contraseña ingresada coincide con el hash almacenado
         return bcrypt.checkpw(contraseña.encode('utf-8'), self.contraseña_hash.encode('utf-8'))
+
+
+
+class pilotos(db.Model):
+    __tablename__ = 'pilotos'
+    id_piloto = db.Column(Integer, primary_key=True)
+    nombre = db.Column(String(100), nullable=False)
+    licencia = db.Column(String(20), unique=True, nullable=False)
+
+    def __init__(self, nombre, licencia):
+        self.nombre = nombre
+        self.licencia = licencia
+
+
+
+class guardias(db.Model):
+    __tablename__ = 'guardias'
+    id_guardia = db.Column(Integer, primary_key=True)
+    nombre = db.Column(String(100), nullable=False)
+
+    def __init__(self, nombre):
+            self.nombre = nombre
+
+
+### Tabla de Vehículos
+class vehiculos(db.Model):
+    __tablename__ = 'vehiculos'
+    id_vehiculo = db.Column(Integer, primary_key=True)
+    placa = db.Column(String(15), unique=True, nullable=False)
+    modelo = db.Column(String(50), nullable=False)
+    marca = db.Column(String(50), nullable=False)
+    kilometraje_actual = db.Column(Numeric(precision=20, scale=2))
+    
 

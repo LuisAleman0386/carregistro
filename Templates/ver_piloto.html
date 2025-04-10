@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block body %}
+<form method="POST" action="{{ url_for('pilotos_bp.ver_piloto', id_piloto=piloto.id_piloto) }}" class="d-inline-block">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ piloto.nombre }}" required>
+    </div>
+    <div class="form-group">
+        <label for="licencia">Licencia</label>
+        <input type="text" class="form-control" id="licencia" name="licencia" value="{{ piloto.licencia }}" required>
+    </div>
+    
+    <!-- Campo oculto para determinar la acción -->
+    <input type="hidden" name="accion" value="actualizar">
+    
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+
+<!-- Formulario para eliminar el piloto -->
+<form method="POST" action="{{ url_for('pilotos_bp.eliminar_piloto', id_piloto=piloto.id_piloto) }}" 
+      onsubmit="return confirm('¿Estás seguro de eliminar este piloto?');" class="d-inline-block ml-2">
+    <input type="hidden" name="accion" value="eliminar">
+    <button type="submit" class="btn btn-danger">Eliminar Piloto</button>
+</form>
+
+
+{% endblock %}
