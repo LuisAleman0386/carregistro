@@ -6,3 +6,5 @@ control = Blueprint('control', __name__, url_prefix='/control')
 pilotos_bp = Blueprint('pilotos_bp', __name__, url_prefix='/pilotos')
 guardia_bp = Blueprint('guardia_bp', __name__, url_prefix='/guardia')
 vehiculos_bp = Blueprint('vehiculos_bp', __name__, url_prefix='/vehiculos')
+servicio_bp = Blueprint('servicio_bp', __name__, url_prefix='/servicio')
+

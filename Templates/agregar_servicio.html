@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+{% block body %}
+{% include "alerta.html" %}
+
+<form method="POST" action="{{ url_for('servicio_bp.agregar_servicio') }}" class="p-4 border rounded bg-light shadow">
+    <div class="mb-3">
+        <label for="vehiculo" class="form-label">Vehículo:</label>
+        <select name="vehiculo" id="vehiculo" class="form-select" required>
+            <option selected disabled value="">Opcion..</option>
+            {% for v in vehiculos %}
+                <option value="{{ v.id_vehiculo }}">Vehículo {{ v.placa }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="tipo_mantenimiento" class="form-label">Tipo de Mantenimiento:</label>
+        <select name="tipo_mantenimiento" id="tipo_mantenimiento" class="form-select" required>
+            <option selected disabled value="">Opcion..</option>
+            {% for t in tipos_mantenimiento %}
+                <option value="{{ t.id_tipo_mantenimiento }}">{{ t.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="observaciones" class="form-label">Observaciones:</label>
+        <textarea name="observaciones" id="observaciones" class="form-control" rows="3" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="fecha_ingreso_taller" class="form-label">Fecha de ingreso:</label>
+        <input type="date" name="fecha_ingreso_taller" id="fecha_ingreso_taller" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="fecha_salida_taller" class="form-label">Fecha de salida:</label>
+        <input type="date" name="fecha_salida_taller" id="fecha_salida_taller" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="autorizacion" class="form-label">Autorización:</label>
+        <input type="text" name="autorizacion" id="autorizacion" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="costo" class="form-label">Costo del servicio:</label>
+        <input type="text" name="costo" id="costo" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="kilometraje_proximo" class="form-label">Kilometraje próximo servicio:</label>
+        <input type="number" step="0.01" name="kilometraje_proximo" id="kilometraje_proximo" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Servicio</button>
+</form>
+
+
+
+{% endblock %}

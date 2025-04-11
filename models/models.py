@@ -72,3 +72,53 @@ class vehiculos(db.Model):
     kilometraje_actual = db.Column(Numeric(precision=20, scale=2))
     
 
+
+class tipo_mantenimiento(db.Model):
+    __tablename__ = 'tipo_mantenimiento'
+
+    id_tipo_mantenimiento = db.Column(Integer, primary_key=True)
+    nombre = db.Column(String(50), nullable=False)
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+   
+
+class servicios(db.Model):
+    __tablename__ = 'servicios'
+
+    id_servicio = db.Column(Integer, primary_key=True)
+    id_vehiculo = db.Column(Integer, ForeignKey('vehiculos.id_vehiculo'))
+    id_tipo_mantenimiento = db.Column(Integer, ForeignKey('tipo_mantenimiento.id_tipo_mantenimiento'))
+    observaciones = db.Column(String, nullable=False)
+    fecha_ingreso_taller = db.Column(DateTime, nullable=False)
+    fecha_salida_taller = db.Column(DateTime, nullable=False)
+    autorizacion = db.Column(String, nullable=False)
+    costo_del_servicio = db.Column(Numeric(precision=10, scale=2))
+
+    vehiculo = relationship('vehiculos', backref=backref('servicios', cascade='all, delete-orphan'))
+    tipo_mante = relationship('tipo_mantenimiento', backref=backref('servicios', cascade='all, delete-orphan'))
+
+    def __init__(self, id_vehiculo, id_tipo_mantenimiento, observaciones, fecha_ingreso_taller, fecha_salida_taller, autorizacion, costo_del_servicio):
+        self.id_vehiculo = id_vehiculo
+        self.id_tipo_mantenimiento = id_tipo_mantenimiento
+        self.observaciones = observaciones
+        self.fecha_ingreso_taller = fecha_ingreso_taller
+        self.fecha_salida_taller = fecha_salida_taller
+        self.autorizacion = autorizacion
+        self.costo_del_servicio = costo_del_servicio
+
+
+
+class proximo_servicio(db.Model):
+    __tablename__ = 'proximo_servicio'
+
+    id_proximo_servicio = db.Column(Integer, primary_key=True)
+    id_vehiculo = db.Column(Integer, ForeignKey('vehiculos.id_vehiculo'), nullable=False)
+    kilometraje_proximo_servicio = db.Column(Numeric(precision=20, scale=2))
+
+    vehiculo = relationship('vehiculos', backref=backref('proximo_servicio', cascade='all, delete-orphan'))
+
+    def __init__(self, id_vehiculo, kilometraje_proximo_servicio):
+        self.id_vehiculo = id_vehiculo
+        self.kilometraje_proximo_servicio = kilometraje_proximo_servicio
+

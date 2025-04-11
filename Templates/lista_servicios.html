@@ -1,0 +1,39 @@
+
+
+
+{% extends "index.html" %}
+{% block body %}
+<div class="container mt-4">
+    <h2 class="mb-4">Servicios Realizados</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Vehículo (Placa)</th>
+                <th>Tipo de Mantenimiento</th>
+                <th>Costo del Servicio</th>
+                <th>Ver</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in servicios %}
+            <tr>
+                <td>{{ servicio.vehiculo.placa }}</td>
+                <td>{{ servicio.tipo_mante.nombre }}</td>
+                <td>Q {{ servicio.costo_del_servicio }}</td>
+                <td>
+                    <a href="{{ url_for('servicio_bp.detalle_servicio', id_servicio=servicio.id_servicio) }}" class="btn btn-info btn-sm">
+                        Ver detalle
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" class="text-center">No hay servicios registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

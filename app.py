@@ -40,6 +40,8 @@ from Controllers.ControlController import control
 from Controllers.pilotoController import pilotos_bp
 from Controllers.guardiaController import guardia_bp
 from Controllers.vehiculoController import vehiculos_bp
+from Controllers.ServicioController import servicio_bp
+
 
 # Registrar Blueprints
 app.register_blueprint(login_bp)
@@ -48,6 +50,8 @@ app.register_blueprint(control)
 app.register_blueprint(pilotos_bp)
 app.register_blueprint(guardia_bp)
 app.register_blueprint(vehiculos_bp)
+app.register_blueprint(servicio_bp)
+
 
 
 
